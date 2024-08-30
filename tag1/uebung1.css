@@ -1,0 +1,14 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a3a3f1;
+  font-family: 'Monaspace Neon', monospace;
+}
+
+section {
+  text-align: center;
+  color: #333;
+}
