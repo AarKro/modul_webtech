@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+
+* {
+  box-sizing: border-box;
+  position: relative;
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -8,4 +15,12 @@ body {
   background-color: #a3a3f1;
   font-family: 'Monaspace Neon', monospace;
   color: #333;
+}
+
+main, footer, header, hr {
+  width: 100%;
+}
+
+main, footer, header {
+  width: 512px;
 }
