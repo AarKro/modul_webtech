@@ -7,9 +7,10 @@
 }
 
 body {
-  display: flex;
-  justify-content: center;
   font-family: 'Roboto', sans-serif;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* 
@@ -18,44 +19,95 @@ ipad: 810px 1080px
 iphone: 375px 812px 
 */
 
-.poster {
-  width: 810px;
-  height: 1080px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  margin: 20px;
-  overflow: hidden;
-
-  transform: scale(.8);
+.background {
+  width: 100%;
+  height: 100%;
+  background-color: #00b2a2;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
-.title {
-  font-size: 5rem;
+/* .background-grid {
+  position: absolute;
+  display: grid;
+  grid-template: repeat(14, 6rem) / repeat(14, 6rem);
+  gap: .5rem;
+  transform: rotate(-45deg) translateY(-18.3rem);
+  padding: .5rem;
 }
 
-section {
-  margin-top: 20px;
-}
-
-.info {
-  font-size: 2rem;
-}
+.whitespace {
+  background-color: white;
+  grid-area: 2 / 6;
+  border-radius: 10%;
+} */
 
 .grid {
-  width: 180%;
-  height: 180%;
   display: grid;
-  grid-template: repeat(auto-fill, 10rem) / repeat(auto-fill, 10rem);
-  gap: 15px;
-  transform: rotate(-35deg) translateY(-20rem);
+  grid-template: repeat(10, 6rem) / repeat(10, 6rem);
+  gap: .5rem;
+  transform: rotate(-45deg);
+  background-color: white;
+  padding: .5rem;
 }
 
 .grid-item {
-  width: 100%;
-  height: 100%;
-  background-color: #ee137f;
-  padding: 1rem;
+  &:nth-child(8n + 1), &:nth-child(8n + 2) {
+    background-color: #ee137f;
+  }
   
-  &:nth-child(odd) {
+  &:nth-child(8n + 3), &:nth-child(8n + 4) {
     background-color: #00b2a2;
+  }
+
+  &:nth-child(8n + 5), &:nth-child(8n + 6) {
+    background-color: white;
+  }
+  
+  &:nth-child(8n + 7), &:nth-child(8n + 8) {
+    background-color: black;
+  }
+
+  &.title {
+    z-index: 1;
+    padding-left: 1rem;
+    font-size: 6.5rem;
+    font-weight: bold;
+    line-height: 1;
+  }
+    
+  &.info {
+    z-index: 1;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &.pink {
+    background-color: #ee137f;
+  }
+
+  &.green {
+    background-color: #00b2a2;
+  }
+  
+  &.white {
+    background-color: white;
+  }
+
+  &.span2 {
+    grid-column: span 2;
+  }
+
+  &.span3 {
+    grid-column: span 3;
+  }
+
+  &.span6 {
+    grid-column: span 6;
   }
 }

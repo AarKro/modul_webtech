@@ -1,0 +1,12 @@
+span {
+  background-color: yellow;
+  padding: 20px
+}
+
+div {
+  width: 400px;
+  border: thin solid red;
+  margin: 300px;
+  padding: 100px;
+  background-color: lightpink;
+}
