@@ -43,28 +43,67 @@ body {
 }
 
 /* poster grid item specific classes */
-.grid-item {
+.grid-item-scene {
+  perspective: 1000px;
+  background-color: transparent;
 
   /* auto coloring of grid items */
-  &:nth-child(8n + 1), &:nth-child(8n + 2) {
+  &:nth-child(8n + 1) .grid-item, &:nth-child(8n + 2) .grid-item {
     background-color: #ee137f;
   }
   
-  &:nth-child(8n + 3), &:nth-child(8n + 4) {
+  &:nth-child(8n + 3) .grid-item, &:nth-child(8n + 4) .grid-item {
     background-color: #00b2a2;
   }
 
-  &:nth-child(8n + 5), &:nth-child(8n + 6) {
+  &:nth-child(8n + 5) .grid-item, &:nth-child(8n + 6) .grid-item {
     background-color: white;
   }
   
-  &:nth-child(8n + 7), &:nth-child(8n + 8) {
+  &:nth-child(8n + 7) .grid-item, &:nth-child(8n + 8) .grid-item {
     background-color: black;
   }
 
+  /* change column span of grid item */
+  &.span-2 {
+    z-index: 1;
+    grid-column: span 2;
+  }
+
+  &.span-3 {
+    z-index: 1;
+    grid-column: span 3;
+  }
+
+  &.span-6 {
+    z-index: 1;
+    grid-column: span 6;
+  }
+}
+
+.grid-item-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  transform: rotate3d(1, -1, 0, 180deg);
+
+  &.flipped {
+    transform: rotate3d(0, 0, 0, 0) ;
+  }
+}
+
+.grid-item, .grid-item-backside {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.grid-item {
   /* text styles for grid item */
   &.title {
-    z-index: 1;
     padding-left: 1rem;
     font-size: 6.5rem;
     font-weight: bold;
@@ -72,7 +111,6 @@ body {
   }
     
   &.info {
-    z-index: 1;
     padding: 1rem;
     font-size: 1rem;
     font-weight: bold;
@@ -83,33 +121,25 @@ body {
 
   /* change color of grid item */
   &.pink {
-    background-color: #ee137f;
+    background-color: #ee137f !important;
   }
 
   &.green {
-    background-color: #00b2a2;
+    background-color: #00b2a2 !important;
   }
   
   &.white {
-    background-color: white;
+    background-color: white !important;
   }
 
   &.black {
-    background-color: black;
+    background-color: black !important;
   }
+}
 
-  /* change column span of grid item */
-  &.span-2 {
-    grid-column: span 2;
-  }
-
-  &.span-3 {
-    grid-column: span 3;
-  }
-
-  &.span-6 {
-    grid-column: span 6;
-  }
+.grid-item-backside {
+  background-color: white;
+  transform: rotateY(-180deg);
 }
 
 /* background grid for desktop, only contains white spaces  */

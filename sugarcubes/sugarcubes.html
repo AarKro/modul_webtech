@@ -169,17 +169,18 @@
 
 </body>
 
-<script>
+<!-- JS for generating background grid -->
+<script type="module">
   const backgroundGridSize = 20; // rows & cols
   const posterGridSize = 10; // rows & cols
-  const backgroundGridElement = document.getElementsByClassName("background-grid")[0];
+  const backgroundGridElement = document.getElementsByClassName('background-grid')[0];
 
   function getRandomNumber(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   function getRandomColor() {
-    // adding green (#00b2a2) twice to increase odds of it appearing
+    // adding green (#00b2a2) multiple times to increase odds of it appearing
     const colors = ['#00b2a2', '#00b2a2', '#00b2a2', '#00b2a2', '#00b2a2', '#ee137f', '#000000', '#ffffff'];
     return colors[getRandomNumber(0, colors.length - 1)];
   }
@@ -204,6 +205,44 @@
       }
     }
   }
+</script>
+
+<!-- JS for constructing 3d grid-item html -->
+<script type="module">
+  const gridItems = document.getElementsByClassName('grid-item');
+
+  Array.from(gridItems).forEach(element => {
+    const sceneClasses = Array.from(element.classList).filter(c => c.startsWith('span'));
+    const gridItemClasses = Array.from(element.classList).filter(c => !c.startsWith('span'));
+
+    const gridItemScene = document.createElement('div');
+    gridItemScene.classList.add('grid-item-scene');
+    sceneClasses.forEach(c => gridItemScene.classList.add(c));
+    
+    const gridItemInner = document.createElement('div');
+    gridItemInner.classList.add('grid-item-inner');
+    
+    const gridItem = document.createElement('div');
+    gridItemClasses.forEach(c => gridItem.classList.add(c));
+    gridItem.innerHTML = element.innerHTML;
+    
+    const gridItemBackside = document.createElement('div');
+    gridItemBackside.classList.add('grid-item-backside');
+  
+    gridItemInner.appendChild(gridItem);
+    gridItemInner.appendChild(gridItemBackside);
+    gridItemScene.appendChild(gridItemInner);
+    element.replaceWith(gridItemScene);
+  });
+</script>
+
+<!-- JS for triggering entrance animation -->
+<script type="module">
+  const gridItemInners = document.getElementsByClassName('grid-item-inner');
+
+  Array.from(gridItemInners).forEach((element, i) => {
+    setTimeout(() => element.classList.add('flipped'), 20 * i);
+  });
 </script>
 
 </html>
