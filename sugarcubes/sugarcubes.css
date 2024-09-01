@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+/* 
+desktop: 1440px 900px
+ipad: 810px 1080px
+iphone: 375px 812px 
+*/
+
 * {
   position: relative;
   box-sizing: border-box;
@@ -13,12 +19,6 @@ body {
   overflow: hidden;
 }
 
-/* 
-desktop: 1440px 900px
-ipad: 810px 1080px
-iphone: 375px 812px 
-*/
-
 .background {
   width: 100%;
   height: 100%;
@@ -28,31 +28,24 @@ iphone: 375px 812px
   align-items: center;
 }
 
-/* .background-grid {
-  position: absolute;
-  display: grid;
-  grid-template: repeat(14, 6rem) / repeat(14, 6rem);
-  gap: .5rem;
-  transform: rotate(-45deg) translateY(-18.3rem);
-  padding: .5rem;
-}
-
-.whitespace {
-  background-color: white;
-  grid-area: 2 / 6;
-  border-radius: 10%;
-} */
-
-.grid {
+/* main grid */
+.poster-grid {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  
   display: grid;
   grid-template: repeat(10, 6rem) / repeat(10, 6rem);
   gap: .5rem;
-  transform: rotate(-45deg);
   background-color: white;
-  padding: .5rem;
+  padding: .53rem; /* had to add .03 to hide some weird pixel thin border, possible rounding issue */
 }
 
+/* poster grid item specific classes */
 .grid-item {
+
+  /* auto coloring of grid items */
   &:nth-child(8n + 1), &:nth-child(8n + 2) {
     background-color: #ee137f;
   }
@@ -69,6 +62,7 @@ iphone: 375px 812px
     background-color: black;
   }
 
+  /* text styles for grid item */
   &.title {
     z-index: 1;
     padding-left: 1rem;
@@ -87,6 +81,7 @@ iphone: 375px 812px
     justify-content: center;
   }
 
+  /* change color of grid item */
   &.pink {
     background-color: #ee137f;
   }
@@ -99,15 +94,37 @@ iphone: 375px 812px
     background-color: white;
   }
 
-  &.span2 {
+  &.black {
+    background-color: black;
+  }
+
+  /* change column span of grid item */
+  &.span-2 {
     grid-column: span 2;
   }
 
-  &.span3 {
+  &.span-3 {
     grid-column: span 3;
   }
 
-  &.span6 {
+  &.span-6 {
     grid-column: span 6;
   }
+}
+
+/* background grid for desktop, only contains white spaces  */
+.background-grid {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+
+  display: grid;
+  grid-template: repeat(20, 6rem) / repeat(20, 6rem);
+  gap: .5rem;
+}
+
+/* background grid item specific classes */
+.background-grid-item {
+  border: solid .5rem white;
 }
