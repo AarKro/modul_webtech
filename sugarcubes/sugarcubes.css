@@ -47,22 +47,12 @@ body {
   perspective: 1000px;
   background-color: transparent;
 
-  /* auto coloring of grid items */
-  &:nth-child(8n + 1) .grid-item, &:nth-child(8n + 2) .grid-item {
-    background-color: #ee137f;
-  }
-  
-  &:nth-child(8n + 3) .grid-item, &:nth-child(8n + 4) .grid-item {
-    background-color: #00b2a2;
-  }
+  /* transform: scale(1);
+  transition: .2s transform ease-out;
 
-  &:nth-child(8n + 5) .grid-item, &:nth-child(8n + 6) .grid-item {
-    background-color: white;
-  }
-  
-  &:nth-child(8n + 7) .grid-item, &:nth-child(8n + 8) .grid-item {
-    background-color: black;
-  }
+  &:hover {
+    transform: scale(.8);
+  } */
 
   /* change column span of grid item */
   &.span-2 {

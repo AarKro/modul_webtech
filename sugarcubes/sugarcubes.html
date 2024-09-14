@@ -18,25 +18,20 @@
     <div class="poster-grid">
       <!-- 1 -->
       <div class="grid-item"></div>
+      <div class="grid-item span-2"></div>
       <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
+      <div class="grid-item span-2"></div>
+      <div class="grid-item span-2"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
 
       <!-- 2 -->
       <div class="grid-item"></div>
+      <div class="grid-item span-2"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
+      <div class="grid-item span-2"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
 
@@ -45,10 +40,8 @@
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
+      <div class="grid-item span-2"></div>
+      <div class="grid-item span-2"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
 
@@ -74,8 +67,7 @@
       <div class="grid-item"></div>
       
       <!-- 5 -->
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
+      <div class="grid-item span-2"></div>
       <div class="grid-item span-2 title white">
         <p>
           the
@@ -122,18 +114,15 @@
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item white"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
+      <div class="grid-item span-2"></div>
+      <div class="grid-item span-2"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
 
       <!-- 8 -->
       <div class="grid-item"></div>
       <div class="grid-item"></div>
-      <div class="grid-item white"></div>
-      <div class="grid-item"></div>
+      <div class="grid-item span-2"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
@@ -142,12 +131,10 @@
       <div class="grid-item"></div>
 
       <!-- 9 -->
+      <div class="grid-item span-2"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
+      <div class="grid-item span-2"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
@@ -156,14 +143,12 @@
       <!-- 10 -->
       <div class="grid-item"></div>
       <div class="grid-item"></div>
+      <div class="grid-item span-2"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
-      <div class="grid-item"></div>
+      <div class="grid-item span-2"></div>
     </div>
   </section>
 
@@ -211,7 +196,17 @@
 <script type="module">
   const gridItems = document.getElementsByClassName('grid-item');
 
-  Array.from(gridItems).forEach(element => {
+  function getGridItemColor(i) {
+    const index = i + ((i % 2 === 0) ? 1 : -1);
+
+    if (index % 5 === 0) return '#fff';
+    if (index % 3.5 === 0) return '#000';
+    if (index % 3 === 0) return '#ee137f';
+    
+    return '#00b2a2';
+  }
+
+  Array.from(gridItems).forEach((element, i) => {
     const sceneClasses = Array.from(element.classList).filter(c => c.startsWith('span'));
     const gridItemClasses = Array.from(element.classList).filter(c => !c.startsWith('span'));
 
@@ -225,6 +220,7 @@
     const gridItem = document.createElement('div');
     gridItemClasses.forEach(c => gridItem.classList.add(c));
     gridItem.innerHTML = element.innerHTML;
+    gridItem.style.backgroundColor = getGridItemColor(i + 1);
     
     const gridItemBackside = document.createElement('div');
     gridItemBackside.classList.add('grid-item-backside');
@@ -237,12 +233,12 @@
 </script>
 
 <!-- JS for triggering entrance animation -->
-<!-- <script type="module">
+<script type="module">
   const gridItemInners = document.getElementsByClassName('grid-item-inner');
 
   Array.from(gridItemInners).forEach((element, i) => {
     setTimeout(() => element.classList.add('flipped'), 20 * i);
   });
-</script> -->
+</script>
 
 </html>
