@@ -154,7 +154,7 @@
 </body>
 
 <!-- JS for generating background grid -->
-<script type="module">
+<script>
   /*
     Utility function to generate a random number in a given range
   */
@@ -239,20 +239,20 @@
     });
   }
 
-  /*
-    Trigger animations on grid items
-  */
-  const animateGridItems = () => {
-    const gridItems = document.getElementsByClassName('grid-item-inner');
+  // /*
+  //   Trigger animations on grid items
+  // */
+  // const animateGridItems = () => {
+  //   const gridItems = document.getElementsByClassName('grid-item-inner');
   
-    Array.from(gridItems).forEach((element, i) => {
-      setTimeout(() => element.classList.add('flipped'), 20 * i);
-    });
-  }
+  //   Array.from(gridItems).forEach((element, i) => {
+  //     setTimeout(() => element.classList.add('flipped'), 20 * i);
+  //   });
+  // }
 
   generateBackgroundGrid();
   transformGridItems();
-  animateGridItems();
+  // animateGridItems();
 </script>
 
 </html>
