@@ -197,13 +197,11 @@
   const gridItems = document.getElementsByClassName('grid-item');
 
   function getGridItemColor(i) {
-    const index = i + ((i % 2 === 0) ? 1 : -1);
-
-    if (index % 5 === 0) return '#fff';
-    if (index % 3.5 === 0) return '#000';
-    if (index % 3 === 0) return '#ee137f';
+    if (i % 5 === 0) return '#000';
+    if (i % 3 === 0) return '#00b2a2';
+    if (i % 2 === 0) return '#ee137f';
     
-    return '#00b2a2';
+    return '#fff';
   }
 
   Array.from(gridItems).forEach((element, i) => {
