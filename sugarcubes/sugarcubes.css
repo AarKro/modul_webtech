@@ -8,7 +8,7 @@
   --color-black: #000;
 
   /* misc */
-  --grid-item-size: max(4rem, min(6rem, 8vw));
+  --grid-item-size: clamp(4rem, 8vw, 6rem);
 }
 
 /* 
@@ -113,14 +113,14 @@ body {
   /* text styles for grid item */
   &.title {
     padding-left: .5rem;
-    font-size: max(4.8rem, min(7.2rem, 9.6vw));
+    font-size: clamp(4.8rem, 9.6vw, 7.2rem);
     font-weight: bold;
     line-height: 1;
   }
 
   &.info {
     padding: 1rem;
-    font-size: max(.7rem, min(1.1rem, 1.4vw));
+    font-size: clamp(.7rem, 1.4vw, 1.1rem);
     font-weight: bold;
     display: flex;
     flex-direction: column;
