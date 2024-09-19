@@ -90,11 +90,11 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 1s;
   transform-style: preserve-3d;
-
+  
   /* ANIMATION: 3D Flip 180deg
-
+  
+  transition: transform 1s;
   transform: rotate3d(1, -1, 0, 180deg);
 
   &.flipped {
