@@ -1,18 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-/*
-desktop: 1440px 900px
-ipad: 810px 1080px
-iphone: 375px 812px
-*/
-
 :root {
+  /* colors */
   --color-green: #00b2a2;
   --color-pink: #ee137f;
   --color-white: #fff;
   --color-black: #000;
 
+  /* misc */
   --grid-item-size: max(4rem, min(6rem, 8vw));
+}
+
+/* 
+  media breakpoints 
+
+  desktop: 1440px
+  tablet: 820px
+  phone: 430px
+*/
+
+/* tablet */
+@media screen and (max-width: 820px) {
+}
+
+/* phone */
+@media screen and (max-width: 430px) {
 }
 
 * {
