@@ -8,23 +8,8 @@
   --color-black: #000;
 
   /* misc */
-  --grid-item-size: clamp(4rem, 8vw, 6rem);
-}
-
-/* 
-  media breakpoints 
-
-  desktop: 1440px
-  tablet: 820px
-  phone: 430px
-*/
-
-/* tablet */
-@media screen and (max-width: 820px) {
-}
-
-/* phone */
-@media screen and (max-width: 430px) {
+  --grid-item-size: clamp(4rem, 8vw, 7rem);
+  --grid-gap: .4rem;
 }
 
 * {
@@ -41,18 +26,38 @@ body {
   overflow: hidden;
 }
 
+/* background grid for desktop, only contains white spaces  */
+.background-grid {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  transition: transform .4s ease-out;
+
+  display: grid;
+  grid-template: repeat(20, var(--grid-item-size)) / repeat(20, var(--grid-item-size));
+  gap: var(--grid-gap);
+}
+
+/* background grid item specific classes */
+.background-grid-item {
+  border: solid .5rem white;
+  transition: .5s ease-in-out;
+}
+
 /* main grid */
 .poster-grid {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
+  transition: transform .4s ease-out;
 
   display: grid;
   grid-template: repeat(10, var(--grid-item-size)) / repeat(10, var(--grid-item-size));
-  gap: .5rem;
+  gap: var(--grid-gap);
   background-color: var(--color-white);
-  padding: .53rem; /* had to add .03 to hide some weird pixel thin border, possible rounding issue */
+  padding: calc(var(--grid-gap) + .03rem);  /* had to add .03 to hide some weird pixel thin border, possible rounding issue */
 }
 
 /* poster grid item specific classes */
@@ -60,10 +65,13 @@ body {
   perspective: 1000px;
   background-color: transparent;
 
+  transform-origin: top left;
+  transition: .5s transform ease-out;
+  transform: translate(0) rotate(0);
+
   /* ANIMATION: scale on hover
 
   transform: scale(1);
-  transition: .1s transform ease-out;
 
   &:hover {
     transform: scale(.8);
@@ -71,7 +79,7 @@ body {
 
   /* change column span of grid item */
   &.span-2 {
-    z-index: 1;
+    z-index: 2;
     grid-column: span 2;
   }
 
@@ -113,14 +121,14 @@ body {
   /* text styles for grid item */
   &.title {
     padding-left: .5rem;
-    font-size: clamp(4.8rem, 9.6vw, 7.2rem);
+    font-size: clamp(4.8rem, 9.4vw, 8.2rem);
     font-weight: bold;
     line-height: 1;
   }
 
   &.info {
     padding: 1rem;
-    font-size: clamp(.7rem, 1.4vw, 1.1rem);
+    font-size: clamp(.7rem, 1.4vw, 1.2rem);
     font-weight: bold;
     display: flex;
     flex-direction: column;
@@ -150,19 +158,48 @@ body {
   transform: rotateY(-180deg);
 }
 
-/* background grid for desktop, only contains white spaces  */
-.background-grid {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
+/* 
+  media breakpoints 
 
-  display: grid;
-  grid-template: repeat(20, var(--grid-item-size)) / repeat(20, var(--grid-item-size));
-  gap: .5rem;
+  desktop: 1440px
+  tablet: 820px
+  phone: 430px
+*/
+
+/* tablet */
+@media screen and (max-width: 820px) {
+  :root {
+    --grid-gap: .3rem;
+  }
+  
+  .poster-grid, .background-grid {
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1.4);
+  }
+
+  .background-grid-item {
+    border-color: var(--color-green) !important;
+  }
 }
 
-/* background grid item specific classes */
-.background-grid-item {
-  border: solid .5rem white;
+/* phone */
+@media screen and (max-width: 430px) {
+  :root {
+    --grid-gap: .2rem;
+  }
+
+  .poster-grid, .background-grid {
+    transform: translate(-45%, -50%) rotate(-90deg) scale(1.4);
+  }
+
+  .grid-item-scene:has(.info.pink) {
+    transform: translate(calc(50% - (var(--grid-gap) / 2)), calc(-100% - var(--grid-gap))) rotate(90deg);
+  }
+ 
+  .grid-item-scene:has(.info.green) {
+    transform: translate(100%, 0) rotate(90deg);
+  }
+
+  .grid-item.title {
+    font-size: 4.6rem;
+  }
 }
