@@ -26,7 +26,7 @@ body {
   overflow: hidden;
 }
 
-/* background grid for desktop, only contains white spaces  */
+/* background grid for desktop (and tablet) */
 .background-grid {
   position: fixed;
   top: 50%;
