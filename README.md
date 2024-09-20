@@ -2,7 +2,11 @@
 Repository for HFIAD module Webtech
 
 ## Project Deliverables
-Deliverables for this modules are locaten in [`/sugarcubes`](https://github.com/AarKro/modul_webtech/tree/main/sugarcubes)
+
+Latest version of "the sugarcubes" is locaten in [`/sugarcubes`](https://github.com/AarKro/modul_webtech/tree/main/sugarcubes)
+
+- [Abgabe 1](https://github.com/AarKro/modul_webtech/releases/tag/abgabe-1)
+
 
 ## Github Pages
 [latest version of the sugarcubes on gh pages](https://aarkro.github.io/modul_webtech/sugarcubes/sugarcubes.html)
