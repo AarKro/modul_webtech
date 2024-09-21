@@ -1,8 +1,17 @@
 /*
-  Utility function to generate a random number in a given range
+  Utility functions
 */
 const getRandomNumber = (min, max) => { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i >= 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+
+  return array;
 }
 
 /*
@@ -46,15 +55,15 @@ const generateBackgroundGrid = () => {
   Also algorithmically color in grid items.
 */
 const transformGridItems = () => {
-  const gridItems = document.getElementsByClassName('grid-item');
-
-  function getGridItemColor(i) {
+  const getGridItemColor = (i) => {
     if (i % 5 === 0) return 'black';
     if (i % 3 === 0) return 'green';
     if (i % 2 === 0) return 'pink';
 
     return 'white';
   }
+
+  const gridItems = document.getElementsByClassName('grid-item');
 
   Array.from(gridItems).forEach((element, i) => {
     const sceneClasses = Array.from(element.classList).filter(c => c.startsWith('span'));
@@ -82,17 +91,42 @@ const transformGridItems = () => {
   });
 }
 
-// /*
-//   Trigger animations on grid items
-// */
-// const animateGridItems = () => {
-//   const gridItems = document.getElementsByClassName('grid-item-inner');
+/*
+  Trigger animations on grid items
+*/
+const animateGridItems = () => {
+  const intervalGenerator = function* () {
+    yield 0;
+    yield 2000;
+    yield 3000;
+    yield 3500;
 
-//   Array.from(gridItems).forEach((element, i) => {
-//     setTimeout(() => element.classList.add('flipped'), 20 * i);
-//   });
-// }
+    const interval = 3500;
+    while (true) {
+      yield interval + getRandomNumber(1, 2000);
+    }
+  }();
+
+  const gridItemsDOM = document.getElementsByClassName('grid-item-inner');
+  const gridItems = Array.from(gridItemsDOM);
+
+  const firstItem = gridItems.splice(16, 1)[0];
+  const shuffledGridItems = [firstItem, ...shuffleArray(Array.from(gridItems))];
+
+  shuffledGridItems.forEach((element) => {
+    const gridItem = element.getElementsByClassName('grid-item')[0];
+    if (gridItem.style.backgroundColor !== "var(--color-white)" && !gridItem.classList.contains('white')) {
+      setTimeout(() => {
+        // element.classList.add('flipped');
+        element.style.animation = `drop ${getRandomNumber(2, 3)}s cubic-bezier(0, 0, 0.35, 1) forwards`;
+        element.parentNode.style.zIndex = '3';
+      }, intervalGenerator.next().value);
+    } else {
+      element.style.transform = 'translate(0)';
+    }
+  });
+}
 
 generateBackgroundGrid();
 transformGridItems();
-// animateGridItems();
+animateGridItems();

@@ -69,14 +69,6 @@ body {
   transition: .5s transform ease-out;
   transform: translate(0) rotate(0);
 
-  /* ANIMATION: scale on hover
-
-  transform: scale(1);
-
-  &:hover {
-    transform: scale(.8);
-  } */
-
   /* change column span of grid item */
   &.span-2 {
     z-index: 2;
@@ -100,12 +92,11 @@ body {
   height: 100%;
   transform-style: preserve-3d;
   
-  /* ANIMATION: 3D Flip 180deg
-  
-  transition: transform 1s;
-  transform: rotate3d(1, -1, 0, 180deg);
+  /* transition: transform 1s; */
+  /* transform: rotate3d(1, -1, 0, 180deg); */
+  transform: translate(100vh, -100vh);
 
-  &.flipped {
+  /* &.flipped {
     transform: rotate3d(0, 0, 0, 0) ;
   } */
 }
@@ -201,5 +192,38 @@ body {
 
   .grid-item.title {
     font-size: 4.6rem;
+  }
+}
+
+@keyframes drop {
+  0% {
+    transform: translate(100vh, -100vh);
+    animation-timing-function: ease-in; 
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  }
+  40% {
+    transform: translate(30vh, -30vh);
+    animation-timing-function: ease-in; 
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  }
+	65% {
+    transform: translate(20vh, -20vh);
+    animation-timing-function: ease-in;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+   }
+	82% {
+    transform: translate(10vh, -10vh);
+    animation-timing-function: ease-in; 
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  }
+	92% {
+    transform: translate(5vh, -5vh);
+    animation-timing-function: ease-in; 
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  }
+	25%, 55%, 75%, 87%, 97%, 100% {
+    transform: translate(0);
+    animation-timing-function: ease-out;
+    box-shadow: none;
   }
 }
