@@ -8,5 +8,5 @@ Latest version of "the sugarcubes" is located in [`/sugarcubes`](https://github.
 - [Abgabe 1](https://github.com/AarKro/modul_webtech/releases/tag/abgabe-1)
 
 
-## Github Pages
+## Demo
 [latest version of the sugarcubes on gh pages](https://aarkro.github.io/modul_webtech/sugarcubes/sugarcubes.html)
