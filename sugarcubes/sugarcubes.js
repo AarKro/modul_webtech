@@ -110,7 +110,9 @@ const animateGridItems = () => {
   const gridItemsDOM = document.getElementsByClassName('grid-item-inner');
   const gridItems = Array.from(gridItemsDOM);
 
+  console.log(gridItems);
   const firstItem = gridItems.splice(16, 1)[0];
+  console.log(gridItems);
   const shuffledGridItems = [firstItem, ...shuffleArray(Array.from(gridItems))];
 
   shuffledGridItems.forEach((element) => {
