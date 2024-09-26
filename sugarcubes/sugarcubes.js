@@ -95,40 +95,40 @@ const transformGridItems = () => {
   Trigger animations on grid items
 */
 const animateGridItems = () => {
-  const intervalGenerator = function* () {
-    yield 0;
-    yield 2000;
-    yield 3000;
-    yield 3500;
-
-    const interval = 3500;
-    while (true) {
-      yield interval + getRandomNumber(1, 2000);
-    }
-  }();
-
   const gridItemsDOM = document.getElementsByClassName('grid-item-inner');
   const gridItems = Array.from(gridItemsDOM);
 
-  console.log(gridItems);
-  const firstItem = gridItems.splice(16, 1)[0];
-  console.log(gridItems);
-  const shuffledGridItems = [firstItem, ...shuffleArray(Array.from(gridItems))];
+  gridItems.forEach((element, i) => {
+    setTimeout(() => {
+      element.classList.add('flipped');
 
-  shuffledGridItems.forEach((element) => {
-    const gridItem = element.getElementsByClassName('grid-item')[0];
-    if (gridItem.style.backgroundColor !== "var(--color-white)" && !gridItem.classList.contains('white')) {
       setTimeout(() => {
-        // element.classList.add('flipped');
-        element.style.animation = `drop ${getRandomNumber(2, 3)}s cubic-bezier(0, 0, 0.35, 1) forwards`;
-        element.parentNode.style.zIndex = '3';
-      }, intervalGenerator.next().value);
-    } else {
-      element.style.transform = 'translate(0)';
-    }
+        if (element.parentElement.classList.contains('span-2')) {
+          element.classList.add('expand');
+        }
+      }, 700);
+    }, i * 20);
   });
 }
+
+const animateGlowBorder = () => {
+  const glowBorder = document.getElementsByClassName('glow-border')[0];
+  setTimeout(() => glowBorder.classList.add('show'), 1000);
+
+
+  const root = document.documentElement;
+  const speed = 2;
+  let angle = 0;
+
+  const swirl = () => {
+    root.style.setProperty("--angle", `${(angle = (angle + speed) % 360)}deg`);
+    requestAnimationFrame(swirl);
+  }
+
+  swirl();
+};
 
 generateBackgroundGrid();
 transformGridItems();
 animateGridItems();
+// animateGlowBorder();

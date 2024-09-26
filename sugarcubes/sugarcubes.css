@@ -7,9 +7,22 @@
   --color-white: #fff;
   --color-black: #000;
 
-  /* misc */
+  /* grid vars */
   --grid-item-size: clamp(4rem, 8vw, 7rem);
   --grid-gap: .4rem;
+
+  /* animation misc */
+  --angle: 0deg;
+  --gradient-shadow: conic-gradient(
+    from var(--angle) at center,
+    #8c1a74,
+    #732695,
+    #563eb3,
+    #4259d2,
+    #3a75f2,
+    #563eb3,
+    #732695
+  );
 }
 
 * {
@@ -25,6 +38,15 @@ body {
   height: 100vh;
   overflow: hidden;
 }
+
+/* .glow-border {
+  position: fixed;
+  inset: calc(30px / -2);
+  border: 30px solid;
+  border-image: var(--gradient-shadow) 10;
+  filter: blur(12px);
+  z-index: 1;
+} */
 
 /* background grid for desktop (and tablet) */
 .background-grid {
@@ -45,6 +67,24 @@ body {
   transition: .5s ease-in-out;
 }
 
+.glow-border {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  background: var(--gradient-shadow);
+  width: 0;
+  height: 0;
+  filter: blur(0);
+  transition: all 1s ease-out;
+  
+  &.show {
+    width: calc(11 * var(--grid-item-size));
+    height: calc(11 * var(--grid-item-size));
+    filter: blur(25px);
+  }
+}
+
 /* main grid */
 .poster-grid {
   position: fixed;
@@ -56,7 +96,7 @@ body {
   display: grid;
   grid-template: repeat(10, var(--grid-item-size)) / repeat(10, var(--grid-item-size));
   gap: var(--grid-gap);
-  background-color: var(--color-white);
+  background: var(--color-white);
   padding: calc(var(--grid-gap) + .03rem);  /* had to add .03 to hide some weird pixel thin border, possible rounding issue */
 }
 
@@ -66,7 +106,7 @@ body {
   background-color: transparent;
 
   transform-origin: top left;
-  transition: .5s transform ease-out;
+  transition: .5s transform ease-out ;
   transform: translate(0) rotate(0);
 
   /* change column span of grid item */
@@ -92,13 +132,21 @@ body {
   height: 100%;
   transform-style: preserve-3d;
   
-  /* transition: transform 1s; */
-  /* transform: rotate3d(1, -1, 0, 180deg); */
-  transform: translate(100vh, -100vh);
+  transition: transform 1s ease-out, width .3s ease-out;
+  transform: rotate3d(0, 1, 0, -180deg);
 
-  /* &.flipped {
+  &.flipped {
     transform: rotate3d(0, 0, 0, 0) ;
-  } */
+  }
+
+}
+
+.span-2 .grid-item-inner {
+  width: 50%;
+}
+
+.span-2 .expand {
+  width: 100%;
 }
 
 .grid-item, .grid-item-backside {
@@ -192,38 +240,5 @@ body {
 
   .grid-item.title {
     font-size: 4.6rem;
-  }
-}
-
-@keyframes drop {
-  0% {
-    transform: translate(100vh, -100vh);
-    animation-timing-function: ease-in; 
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  }
-  40% {
-    transform: translate(30vh, -30vh);
-    animation-timing-function: ease-in; 
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  }
-	65% {
-    transform: translate(20vh, -20vh);
-    animation-timing-function: ease-in;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-   }
-	82% {
-    transform: translate(10vh, -10vh);
-    animation-timing-function: ease-in; 
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  }
-	92% {
-    transform: translate(5vh, -5vh);
-    animation-timing-function: ease-in; 
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  }
-	25%, 55%, 75%, 87%, 97%, 100% {
-    transform: translate(0);
-    animation-timing-function: ease-out;
-    box-shadow: none;
   }
 }
