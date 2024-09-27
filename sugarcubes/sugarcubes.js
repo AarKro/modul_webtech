@@ -5,15 +5,6 @@ const getRandomNumber = (min, max) => { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const shuffleArray = (array) => {
-  for (let i = array.length - 1; i >= 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-  }
-
-  return array;
-}
-
 /*
   Generate grid items for background grid spanning around main grid.
 */
@@ -79,7 +70,11 @@ const transformGridItems = () => {
     const gridItem = document.createElement('div');
     gridItemClasses.forEach(c => gridItem.classList.add(c));
     gridItem.innerHTML = element.innerHTML;
-    gridItem.style.backgroundColor = `var(--color-${getGridItemColor(i + 1)})`;
+
+    // assign color if not already specified
+    if (!Array.from(gridItem.classList).includes(...['pink', 'white', 'green', 'black'])) {
+      gridItem.classList.add(getGridItemColor(i + 1));
+    }
 
     const gridItemBackside = document.createElement('div');
     gridItemBackside.classList.add('grid-item-backside');
@@ -112,22 +107,45 @@ const animateGridItems = () => {
       }, 600);
     }, i * 20);
   });
+
+  setTimeout(() => {
+    const gridItemsWithSpace = Array.from(document.querySelectorAll('.grid-item-scene:has(+ .grid-item-scene .grid-item.white):not(:has(+ .grid-item-scene .grid-item.title), .span-2)'));
+    
+    const gridItemAnimationLoop = () => {
+      const randomGridItem = gridItemsWithSpace[getRandomNumber(0, gridItemsWithSpace.length - 1)];
+      
+      randomGridItem.style.zIndex = 3;
+      randomGridItem.style.transition = 'transform .2s ease-in-out';
+      
+      if (randomGridItem.style.transform.startsWith('translateX')) {
+        // move back
+        randomGridItem.style.transform = 'translate(0)';
+      } else {
+        // move forward
+        randomGridItem.style.transform = 'translateX(calc(var(--grid-item-size) + var(--grid-gap)))';
+      }
+
+      setTimeout(() => gridItemAnimationLoop(), getRandomNumber(1000, 2000));
+    }
+
+    gridItemAnimationLoop();
+  }, 2200);
 }
 
-const animateGlowBorder = () => {
-  const root = document.documentElement;
-  const speed = 2;
-  let angle = 0;
+const generateLeafs = () => {
+  const body = document.getElementsByTagName('body')[0];
+  
+  for (let i = 0; i < 5; i++) {
+    const element = document.createElement('div');
+    element.classList.add('leaf');
+    element.style.top = `${getRandomNumber(-5, 95)}%`;
+    element.style.animation = `${getRandomNumber(3, 7)}s linear ${getRandomNumber(1, 7)}s blowing infinite`;
 
-  const swirl = () => {
-    root.style.setProperty("--angle", `${(angle = (angle + speed) % 360)}deg`);
-    requestAnimationFrame(swirl);
+    body.appendChild(element);
   }
-
-  swirl();
-};
+}
 
 generateBackgroundGrid();
 transformGridItems();
 animateGridItems();
-animateGlowBorder();
+// generateLeafs();

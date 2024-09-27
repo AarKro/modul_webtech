@@ -47,6 +47,7 @@ body {
 
 /* main grid */
 .poster-grid {
+  overflow: hidden;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -56,7 +57,7 @@ body {
   grid-template: repeat(10, var(--grid-item-size)) / repeat(10, var(--grid-item-size));
   gap: var(--grid-gap);
   background: var(--color-white);
-  padding: calc(var(--grid-gap) + .03rem);  /* had to add .03 to hide some weird pixel thin border, possible rounding issue */
+  padding: var(--grid-gap); 
 }
 
 /* poster grid item specific classes */
@@ -159,6 +160,31 @@ body {
 .grid-item-backside {
   background-color: var(--color-white);
   transform: rotateY(-180deg);
+}
+
+.leaf {
+  width: var(--grid-item-size);
+  height: var(--grid-item-size);
+  background-color: var(--color-pink);
+  left: -10vw;
+}
+
+@keyframes blowing {
+  0% {
+    transform: translate(0,0) rotate(0);
+  }
+  20% {
+    transform: translate(25vw, -10vh) rotate(170deg);
+  }
+  65% {
+    transform: translate(65vw, -12vh) rotate(550deg);
+  }
+  80% {
+    transform: translate(80vw, -17vh) rotate(740deg);
+  }
+  100% {
+    transform: translate(110vw, -25vh) rotate(920deg);
+  }
 }
 
 /* 
