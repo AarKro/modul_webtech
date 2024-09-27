@@ -110,15 +110,6 @@ const animateGridItems = () => {
       }, 600);
     }, i * 20);
   });
-  
-  // make text appear
-  setTimeout(() => {
-    const titleElements = document.getElementsByClassName('title');
-    const infoElements = document.getElementsByClassName('info');
-    const textElemets = [...Array.from(titleElements), ...Array.from(infoElements)];
-
-    textElemets.forEach(element => element.classList.add('visible'));
-  }, 2000);
 }
 
 const animateGlowBorder = () => {

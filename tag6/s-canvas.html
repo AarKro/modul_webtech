@@ -19,6 +19,17 @@
       justify-content: center;
       align-items: center;
     }
+
+    .group:hover {
+      & .magenta {
+        transform: translateX(-100px);
+      }
+
+      & .skyblue {
+        transform: translateX(100px);
+      }
+    }
+
     .child {
       grid-column: 1 / 2;
       grid-row: 1 / 2;
@@ -31,16 +42,16 @@
 
     .magenta {
       color: #CE0275;
-      transform: translateX(-90px);
+      transition: transform .5s ease-in-out;
     }
     
     .skyblue {
-      color: #DFC40C;
+      color: #009DC9;
+      transition: transform .5s ease-in-out;
     }
     
     .yellow {
-      color: #009DC9;
-      transform: translateX(90px);
+      color: #DFC40C;
     }
   </style>
 </head>
@@ -50,10 +61,10 @@
     <div class="child magenta">
         S
     </div>
-    <div class="child skyblue">
+    <div class="child yellow">
         S
     </div>
-    <div class="child yellow">
+    <div class="child skyblue">
         S
     </div>
   </div>

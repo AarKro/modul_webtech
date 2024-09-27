@@ -55,6 +55,18 @@
     .rotateAndScale {
       transform:scale(0.7) rotate(35deg);
     }
+
+    .transformed { 
+      height: 500px; 
+      background-color:lightblue; 
+      transition: all .5s ease-in;
+    } 
+
+    .group:hover .transformed { 
+      /* Veränderter Zustand */
+      background-color:black; 
+      transform: translate(100px, 200px);
+    }
       
   </style>
 </head>

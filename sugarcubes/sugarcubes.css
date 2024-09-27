@@ -172,22 +172,15 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-
-  &.info p, &.title p {
-    opacity: 0;
-    transition: opacity .5s ease-out;
-  }
-
-  &.visible p {
-    opacity: 1;
+    text-wrap: nowrap;
+    overflow: hidden;
   }
 
   /* change color of grid item */
   &.pink {
     background-color: var(--color-pink) !important;
   }
-
+  
   &.green {
     background-color: var(--color-green) !important;
   }
