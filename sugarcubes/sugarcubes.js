@@ -101,7 +101,9 @@ const animateGridItems = () => {
   // make items appear and expand
   gridItems.forEach((element, i) => {
     setTimeout(() => {
-      element.classList.add('flipped');
+      if (!element.firstChild.classList.contains('title')) {
+        element.classList.add('flipped');
+      }
 
       setTimeout(() => {
         if (element.parentElement.classList.contains('span-2')) {
