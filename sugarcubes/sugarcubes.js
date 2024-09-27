@@ -115,10 +115,6 @@ const animateGridItems = () => {
 }
 
 const animateGlowBorder = () => {
-  const glowBorder = document.getElementsByClassName('glow-border')[0];
-  setTimeout(() => glowBorder.classList.add('show'), 1000);
-
-
   const root = document.documentElement;
   const speed = 2;
   let angle = 0;
@@ -134,4 +130,4 @@ const animateGlowBorder = () => {
 generateBackgroundGrid();
 transformGridItems();
 animateGridItems();
-// animateGlowBorder();
+animateGlowBorder();
