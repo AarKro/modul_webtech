@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* base styles */
+    body {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .group {
+      display:grid;
+      grid-template-columns: 1fr; 
+      grid-template-rows: 1fr; 
+    }
+
+    .not_transformed,
+    .transformed {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      height: 400px;
+      width: 400px;
+    }
+
+    .not_transformed {
+      background-color: black;
+    }
+
+    .transformed {
+      background-color: rgba(0, 0, 255, 0.5);
+    }
+
+    /* custom styles */
+    .verschieben {
+      transform: translate(100px, 200px);
+    }
+
+    .rotieren {
+      transform: rotate(45deg);
+    }
+
+    .scale {
+      transform:scale(0.8, 2);
+    }
+
+    .skew {
+      transform:skew(20deg, 10deg);
+    }
+
+    .rotateAndScale {
+      transform:scale(0.7) rotate(35deg);
+    }
+      
+  </style>
+</head>
+<body>
+
+  <section>
+    <h1>Verschieben</h1>
+    <div class="group">
+        <div class="not_transformed">
+        </div>
+        <div class="transformed verschieben">
+        </div>
+    </div>
+  </section>
+
+  <section>
+    <h1>Rotation</h1>
+    <div class="group">
+        <div class="not_transformed">
+        </div>
+        <div class="transformed rotieren">
+        </div>
+    </div>
+  </section>
+
+  <section>
+    <h1>Scale</h1>
+    <div class="group">
+        <div class="not_transformed">
+        </div>
+        <div class="transformed scale">
+        </div>
+    </div>
+  </section>
+
+  <section>
+    <h1>Skew</h1>
+    <div class="group">
+        <div class="not_transformed">
+        </div>
+        <div class="transformed skew">
+        </div>
+    </div>
+  </section>
+
+  <section>
+    <h1>Rotate & Scale</h1>
+    <div class="group">
+        <div class="not_transformed">
+        </div>
+        <div class="transformed rotateAndScale">
+        </div>
+    </div>
+  </section>
+
+</body>
+</html>

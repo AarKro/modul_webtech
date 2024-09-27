@@ -98,6 +98,7 @@ const animateGridItems = () => {
   const gridItemsDOM = document.getElementsByClassName('grid-item-inner');
   const gridItems = Array.from(gridItemsDOM);
 
+  // make items appear and expand
   gridItems.forEach((element, i) => {
     setTimeout(() => {
       element.classList.add('flipped');
@@ -106,9 +107,18 @@ const animateGridItems = () => {
         if (element.parentElement.classList.contains('span-2')) {
           element.classList.add('expand');
         }
-      }, 700);
+      }, 600);
     }, i * 20);
   });
+  
+  // make text appear
+  setTimeout(() => {
+    const titleElements = document.getElementsByClassName('title');
+    const infoElements = document.getElementsByClassName('info');
+    const textElemets = [...Array.from(titleElements), ...Array.from(infoElements)];
+
+    textElemets.forEach(element => element.classList.add('visible'));
+  }, 2000);
 }
 
 const animateGlowBorder = () => {

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .group {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      align-self: center;
+      height: 100vh;
+      width: 100vw;
+      justify-content: center;
+      align-items: center;
+    }
+    .child {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      mix-blend-mode: multiply;
+      font-size: 800px;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+    }
+
+    .magenta {
+      color: #CE0275;
+      transform: translateX(-90px);
+    }
+    
+    .skyblue {
+      color: #DFC40C;
+    }
+    
+    .yellow {
+      color: #009DC9;
+      transform: translateX(90px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="group">
+    <div class="child magenta">
+        S
+    </div>
+    <div class="child skyblue">
+        S
+    </div>
+    <div class="child yellow">
+        S
+    </div>
+  </div>
+
+</body>
+</html>
