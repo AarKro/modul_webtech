@@ -72,7 +72,7 @@ const transformGridItems = () => {
     gridItem.innerHTML = element.innerHTML;
 
     // assign color if not already specified
-    if (!Array.from(gridItem.classList).includes(...['pink', 'white', 'green', 'black'])) {
+    if (!gridItemClasses.some(element => ['pink', 'white', 'green', 'black'].includes(element))) {
       gridItem.classList.add(getGridItemColor(i + 1));
     }
 
