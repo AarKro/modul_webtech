@@ -127,7 +127,7 @@ const animateGridItems = () => {
         randomGridItem.style.transform = 'translateX(calc(var(--grid-item-size) + var(--grid-gap)))';
       }
 
-      setTimeout(() => gridItemAnimationLoop(), getRandomNumber(500, 2000));
+      setTimeout(() => gridItemAnimationLoop(), getRandomNumber(500, 1500));
     }
 
     gridItemAnimationLoop();
