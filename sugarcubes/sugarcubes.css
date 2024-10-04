@@ -27,16 +27,29 @@ body {
 }
 
 /* background grid for desktop */
-.background-grid {
+.background-wrapper {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
   transition: transform .4s ease-out;
+}
 
+.background-grid {
   display: grid;
   grid-template: repeat(20, var(--grid-item-size)) / repeat(20, var(--grid-item-size));
   gap: var(--grid-gap);
+  animation: orbit 6s linear infinite;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(10px) rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg) translateX(10px) rotate(-360deg);
+  }
 }
 
 /* background grid item specific classes */
@@ -57,7 +70,7 @@ body {
   grid-template: repeat(10, var(--grid-item-size)) / repeat(10, var(--grid-item-size));
   gap: var(--grid-gap);
   background: var(--color-white);
-  padding: var(--grid-gap); 
+  padding: var(--grid-gap);
 }
 
 /* poster grid item specific classes */
@@ -66,7 +79,7 @@ body {
   background-color: transparent;
 
   transform-origin: top left;
-  transition: .5s transform ease-out ;
+  transition: .5s transform ease-out;
   transform: translate(0) rotate(0);
 
   /* change column span of grid item */
@@ -76,7 +89,7 @@ body {
   }
 
   &.span-3 {
-    z-index: 10;
+    z-index: 2;
     grid-column: span 3;
   }
 
@@ -91,20 +104,16 @@ body {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  
+
   transition: transform 1s ease-out, width .3s ease-out;
   transform: rotate3d(0, 1, 0, -180deg);
-  
+
   &:has(.title) {
     transform: rotate3d(0, 0, 0, 0);
   }
-  
+
   &.flipped {
     transform: rotate3d(0, 0, 0, 0);
-  }
-  
-  &.unflipped {
-    transform: rotate3d(0, 1, 0, -180deg);
   }
 }
 
@@ -116,7 +125,8 @@ body {
   width: 100%;
 }
 
-.grid-item, .grid-item-backside {
+.grid-item,
+.grid-item-backside {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -124,6 +134,7 @@ body {
 }
 
 .grid-item {
+
   /* text styles for grid item */
   &.title {
     padding-left: .5rem;
@@ -147,7 +158,7 @@ body {
   &.pink {
     background-color: var(--color-pink) !important;
   }
-  
+
   &.green {
     background-color: var(--color-green) !important;
   }
@@ -181,8 +192,9 @@ body {
   :root {
     --grid-gap: .3rem;
   }
-  
-  .poster-grid, .background-grid {
+
+  .poster-grid,
+  .background-wrapper {
     transform: translate(-50%, -50%) rotate(-45deg) scale(1.4);
   }
 
@@ -197,14 +209,15 @@ body {
     --grid-gap: .2rem;
   }
 
-  .poster-grid, .background-grid {
+  .poster-grid,
+  .background-wrapper {
     transform: translate(-45%, -50%) rotate(-90deg) scale(1.4);
   }
 
   .grid-item-scene:has(.info.pink) {
     transform: translate(calc(50% - (var(--grid-gap) / 2)), calc(-100% - var(--grid-gap))) rotate(90deg);
   }
- 
+
   .grid-item-scene:has(.info.green) {
     transform: translate(100%, 0) rotate(90deg);
   }

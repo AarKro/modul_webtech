@@ -46,14 +46,6 @@ const generateBackgroundGrid = () => {
   Also algorithmically color in grid items.
 */
 const transformGridItems = () => {
-  const flip = (element) => {
-    if (element.classList.contains('unflipped')) {
-      element.classList.remove('unflipped');
-    } else {
-      element.classList.add('unflipped');
-    }
-  }
-
   const getGridItemColor = (i) => {
     if (i % 5 === 0) return 'black';
     if (i % 3 === 0) return 'green';
@@ -74,7 +66,6 @@ const transformGridItems = () => {
 
     const gridItemInner = document.createElement('div');
     gridItemInner.classList.add('grid-item-inner');
-    gridItemInner.onclick = () => flip(gridItemInner);
 
     const gridItem = document.createElement('div');
     gridItemClasses.forEach(c => gridItem.classList.add(c));
