@@ -117,6 +117,7 @@ const animateGridItems = () => {
     }, i * 20);
   });
 
+  // make items move around to available whitespace
   setTimeout(() => {
     const gridItemsWithSpace = Array.from(document.querySelectorAll('.grid-item-scene:has(+ .grid-item-scene .grid-item.white):not(:has(+ .grid-item-scene .grid-item.title), .span-2)'));
     

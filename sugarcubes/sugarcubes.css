@@ -90,7 +90,6 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  cursor: pointer;
   transform-style: preserve-3d;
   
   transition: transform 1s ease-out, width .3s ease-out;
