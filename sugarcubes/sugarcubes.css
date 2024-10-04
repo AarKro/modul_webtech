@@ -86,6 +86,10 @@ body {
   &.span-2 {
     z-index: 2;
     grid-column: span 2;
+
+    &:not(:has(.white)) {
+      z-index: 11;
+    }
   }
 
   &.span-3 {
