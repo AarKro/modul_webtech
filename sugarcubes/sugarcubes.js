@@ -119,6 +119,7 @@ const animateGridItems = () => {
 
   // make items move around to available whitespace
   setTimeout(() => {
+    // get all grid items which have a whitespace right afterwards
     const gridItemsWithSpace = Array.from(document.querySelectorAll('.grid-item-scene:has(+ .grid-item-scene .grid-item.white):not(:has(+ .grid-item-scene .grid-item.title), .span-2)'));
     
     const gridItemAnimationLoop = () => {
