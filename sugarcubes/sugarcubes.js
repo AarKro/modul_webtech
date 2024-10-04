@@ -46,6 +46,14 @@ const generateBackgroundGrid = () => {
   Also algorithmically color in grid items.
 */
 const transformGridItems = () => {
+  const flip = (element) => {
+    if (element.classList.contains('unflipped')) {
+      element.classList.remove('unflipped');
+    } else {
+      element.classList.add('unflipped');
+    }
+  }
+
   const getGridItemColor = (i) => {
     if (i % 5 === 0) return 'black';
     if (i % 3 === 0) return 'green';
@@ -66,6 +74,7 @@ const transformGridItems = () => {
 
     const gridItemInner = document.createElement('div');
     gridItemInner.classList.add('grid-item-inner');
+    gridItemInner.onclick = () => flip(gridItemInner);
 
     const gridItem = document.createElement('div');
     gridItemClasses.forEach(c => gridItem.classList.add(c));
@@ -125,27 +134,13 @@ const animateGridItems = () => {
         randomGridItem.style.transform = 'translateX(calc(var(--grid-item-size) + var(--grid-gap)))';
       }
 
-      setTimeout(() => gridItemAnimationLoop(), getRandomNumber(1000, 2000));
+      setTimeout(() => gridItemAnimationLoop(), getRandomNumber(500, 2000));
     }
 
     gridItemAnimationLoop();
   }, 2200);
 }
 
-const generateLeafs = () => {
-  const body = document.getElementsByTagName('body')[0];
-  
-  for (let i = 0; i < 5; i++) {
-    const element = document.createElement('div');
-    element.classList.add('leaf');
-    element.style.top = `${getRandomNumber(-5, 95)}%`;
-    element.style.animation = `${getRandomNumber(3, 7)}s linear ${getRandomNumber(1, 7)}s blowing infinite`;
-
-    body.appendChild(element);
-  }
-}
-
 generateBackgroundGrid();
 transformGridItems();
 animateGridItems();
-// generateLeafs();
